@@ -1,4 +1,4 @@
-//test=1;
+testp=(undef == test) ? 1 : test;
 
 // Set led_height if 'tipi' or other odd board
 // set print_bottom=1 to render bottom of shell
@@ -27,25 +27,25 @@ module horizReliefPoints() {
 
 module case_template() {
     difference() {
-        cube([195,150,22]);
+        cube([195,151.5,22]);
       
-        translate([62,-1,2])
-        cube([87,20,10]);  
+        translate([61,-1,2])
+        cube([89,20,10]);  
         
         translate([2,2,2])
         difference() {
-            cube([191,146,18]);
+            cube([191,143,18]);
             
-            cube([4,10,18]);
+            cube([8,10,18]);
             
-            translate([191-4,0,0])
-            cube([4,10,18]);
+            translate([191-8,0,0])
+            cube([8,10,18]);
             
-            translate([191-4,146-10,0])
-            cube([4,10,18]);
+            translate([191-8,146-10,0])
+            cube([8,10,18]);
             
             translate([0,146-10,0])
-            cube([4,10,18]);
+            cube([8,10,18]);
         }
         
         lh = led_height ? led_height : 25;
@@ -65,22 +65,32 @@ module case_template() {
         
         translate([0,150,0])
         horizReliefPoints();
+        
+        translate([3,3,0])
+        cylinder(h=50,d=3,center=true,$fn=6);
+        
+        translate([3,151.5-3,0])
+        cylinder(h=50,d=3,center=true,$fn=6);
+
+        translate([195-3,3,0])
+        cylinder(h=50,d=3,center=true,$fn=6);
+        
+        translate([195-3,151.5-3,0])
+        cylinder(h=50,d=3,center=true,$fn=6);
     }
 }
 
 module reduced_plane() {
-    translate([20,20,0])
-    difference() {
-        cube([195-40,150-40,22]);
-
-        rotate([0,0,-45])
-        translate([-200,0,0])
-        union() {
-            for(iy = [5:20:250]) {
-                translate([0,iy,0])
-                cube([400,15,22]);
+    translate([10,10,0])
+    intersection() {
+        for(iy = [0:30:250]) {
+            for(ix = [0:30:250]) {
+                translate([ix,iy,0])
+                cylinder(h=80,d=25,center=true,$fn=20);
             }
         }
+
+        cube([195-20,150-20,40]);
     }
 }
 
@@ -90,10 +100,10 @@ module bottom() {
         
         pcboard();
         
-        translate([0,0,7])
-        cube([195,150,22]);
-        
         reduced_plane();
+        
+        translate([0,0,7])
+        cube([195,155,22]);
     }
 }
 
@@ -102,19 +112,19 @@ module top() {
         case_template();
       
         pcboard();
-
-        cube([195,150,7]);
         
         reduced_plane();
+
+        cube([195,155,7]);
     }
 }
 
-if (print_bottom||test) {
+if (print_bottom||testp) {
     translate([0,5,0])
     bottom();
 }
 
-if (print_top||test) {
+if (print_top||testp) {
     rotate([180,0,0])
     translate([0,5,-22])
     top();
