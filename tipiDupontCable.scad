@@ -3,8 +3,8 @@
 // cable to the RPi, and TIPI pcb.
 
 
-oxf_x = 12.8;
-oxf_y = 2.7 * 2 + 0.2;
+oxf_x = 12.95;
+oxf_y = 2.85 * 2 + 0.2;
 oxf_z = 14;
 
 module sheath() {
