@@ -5,6 +5,9 @@
 
 * genTopGuide - t-clips for top edge of pcboard to allow downward pressure from foam on PEB lid.
 * tipiDupontCable - housing for dupont connectors so they only fit in TIPI and PI a single way.
+* genmodBox - box for 2 switches and 2 leds to hold circuit for Geneve 9640 Genmod controls.
+* peb_shell - PEB card template/include file for making card specific prints.
+* tipipeb_shell - TipiPEB card shell - models pcb shape, and subtracts from peb_shell.
 
 # License
 
