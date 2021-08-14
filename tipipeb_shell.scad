@@ -24,8 +24,8 @@ module pcboard() {
 }
 
 //nofill=1;
-print_top=1;
-print_bottom=0;
+print_top=0;
+print_bottom=1;
 led_height=25;
 
 test=0;

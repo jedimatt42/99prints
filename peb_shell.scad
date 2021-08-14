@@ -25,7 +25,7 @@ module horizReliefPoints() {
     }
 }
 
-module case_template() {
+module case_template(drill) {
     difference() {
         cube([195,151.5,22]);
       
@@ -66,17 +66,17 @@ module case_template() {
         translate([0,150,0])
         horizReliefPoints();
         
-        translate([3,3,0])
-        cylinder(h=50,d=3,center=true,$fn=6);
+        translate([3.5,3.5,0])
+        cylinder(h=50,d=drill,center=true,$fn=10);
         
-        translate([3,151.5-3,0])
-        cylinder(h=50,d=3,center=true,$fn=6);
+        translate([3.5,151.5-3.5,0])
+        cylinder(h=50,d=drill,center=true,$fn=10);
 
-        translate([195-3,3,0])
-        cylinder(h=50,d=3,center=true,$fn=6);
+        translate([195-3.5,3.5,0])
+        cylinder(h=50,d=drill,center=true,$fn=10);
         
-        translate([195-3,151.5-3,0])
-        cylinder(h=50,d=3,center=true,$fn=6);
+        translate([195-3.5,151.5-3.5,0])
+        cylinder(h=50,d=drill,center=true,$fn=10);
     }
 }
 
@@ -96,7 +96,7 @@ module reduced_plane() {
 
 module bottom() {
     difference() {
-        case_template();
+        case_template(3);
         
         pcboard();
         
@@ -109,7 +109,7 @@ module bottom() {
 
 module top() {
     difference() {
-        case_template();
+        case_template(3.5);
       
         pcboard();
         
